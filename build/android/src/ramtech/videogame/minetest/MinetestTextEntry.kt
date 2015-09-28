@@ -7,8 +7,7 @@ public class MinetestTextEntry : Activity() {
 	private val MultiLineTextInput = 1
 	private val SingleLineTextInput = 2
 	private val SingleLinePasswordInput = 3
-	
-	Override
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		
@@ -32,9 +31,12 @@ public class MinetestTextEntry : Activity() {
 		
 		builder.setView(mTextInputWidget)
 		
-		if (editType == MultiLineTextInput) {
-			builder.setPositiveButton(acceptButton, object : DialogInterface.OnClickListener {
-				override fun onClick(dialog: DialogInterface, whichButton: Int) {
+		if (editType == MultiLineTextInput)
+		{
+			builder.setPositiveButton(acceptButton, object : DialogInterface.OnClickListener
+			{
+				override fun onClick(dialog: DialogInterface, whichButton: Int)
+				{
 					pushResult(mTextInputWidget.getText().toString())
 				}
 			})
@@ -46,14 +48,17 @@ public class MinetestTextEntry : Activity() {
 			}
 		})
 		
-		mTextInputWidget.setOnKeyListener(object : OnKeyListener {
-			Override
-			override fun onKey(view: View, KeyCode: Int, event: KeyEvent): Boolean {
-				if (KeyCode == KeyEvent.KEYCODE_ENTER) {
+		mTextInputWidget.setOnKeyListener(object : OnKeyListener
+		{
+			override fun onKey(view: View, KeyCode: Int, event: KeyEvent): Boolean
+			{
+				if (KeyCode == KeyEvent.KEYCODE_ENTER)
+				{
 					
 					pushResult(mTextInputWidget.getText().toString())
 					return true
 				}
+
 				return false
 			}
 		})
@@ -62,7 +67,8 @@ public class MinetestTextEntry : Activity() {
 		mTextInputDialog.show()
 	}
 	
-	public fun pushResult(text: String) {
+	public fun pushResult(text: String)
+	{
 		val resultData = Intent()
 		resultData.putExtra("text", text)
 		setResult(Activity.RESULT_OK, resultData)
@@ -70,7 +76,8 @@ public class MinetestTextEntry : Activity() {
 		finish()
 	}
 	
-	public fun cancelDialog() {
+	public fun cancelDialog()
+	{
 		setResult(Activity.RESULT_CANCELED)
 		mTextInputDialog.dismiss()
 		finish()
