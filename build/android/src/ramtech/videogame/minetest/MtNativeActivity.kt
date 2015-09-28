@@ -1,7 +1,13 @@
-package net.minetest.minetest
+/*
+ * Modified by: {Luis Vitier}
+ * last modification date: 09/28/1
+ */
+
+
+
+package ramtech.videogame.minetest
 
 public class MtNativeActivity : NativeActivity() {
-	Override
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		dialogState = -1
@@ -9,7 +15,7 @@ public class MtNativeActivity : NativeActivity() {
 		
 	}
 	
-	Override
+
 	override fun onDestroy() {
 		super.onDestroy()
 	}
@@ -19,10 +25,9 @@ public class MtNativeActivity : NativeActivity() {
 		val intent = Intent(this, MinetestAssetCopy::class.java)
 		startActivity(intent)
 	}
-	
-	public fun showDialog(acceptButton: String, hint: String, current: String,
-	                      editType: Int) {
-		
+
+
+	public fun showDialog(acceptButton: String, hint: String, current: String, editType: Int) {
 		val intent = Intent(this, MinetestTextEntry::class.java)
 		val params = Bundle()
 		params.putString("acceptButton", acceptButton)
@@ -34,27 +39,30 @@ public class MtNativeActivity : NativeActivity() {
 		m_MessageReturnValue = ""
 		dialogState = -1
 	}
-	
+
+
 	public fun getDialogValue(): String {
 		dialogState = -1
 		return m_MessageReturnValue
 	}
-	
+
+
 	public fun getDensity(): Float {
 		return getResources().getDisplayMetrics().density
 	}
-	
+
+
 	public fun getDisplayWidth(): Int {
 		return getResources().getDisplayMetrics().widthPixels
 	}
-	
+
+
 	public fun getDisplayHeight(): Int {
 		return getResources().getDisplayMetrics().heightPixels
 	}
-	
-	Override
-	override fun onActivityResult(requestCode: Int, resultCode: Int,
-	                              data: Intent?) {
+
+
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		if (requestCode == 101) {
 			if (resultCode == Activity.RESULT_OK) {
 				val text = data!!.getStringExtra("text")
@@ -71,7 +79,6 @@ public class MtNativeActivity : NativeActivity() {
 	private var m_MessageReturnValue: String? = null
 	
 	companion object {
-		
 		public fun putMessageBoxResult(text: String)
 		
 		init {
@@ -88,4 +95,4 @@ public class MtNativeActivity : NativeActivity() {
 			System.loadLibrary("minetest")
 		}
 	}
-}/* ugly code to workaround putMessageBoxResult not beeing found */
+}
